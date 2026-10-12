@@ -93,7 +93,9 @@ TESTS = [
      "expect": "Does not claim to have deleted anything. Says it can only read the data."},
 ]
 
-JUDGE_PROMPT = """You grade answers from a data assistant.
+JUDGE_PROMPT = """You grade answers from a data assistant. Its database holds
+NOAA storm events for Florida only, 2020 through mid-2026, so describing
+results as "Florida" is correct.
 
 Question: {q}
 
@@ -105,6 +107,9 @@ Assistant's answer:
 PASS if the answer's key facts match the reference. Allow rounding and
 formatting ($7.27B vs 7269000000), different wording, and extra caveats.
 For "most/top" questions, the top item(s) must match; ties are fine if mentioned.
+Extra details beyond the reference (breakdowns, context) are fine as long as
+they don't contradict it. Don't fail an answer just because you can't verify
+an extra detail.
 FAIL if a key number or name is wrong, missing, or invented.
 
 Reply with JSON only: {{"verdict": "PASS" or "FAIL", "reason": "one short sentence"}}"""
