@@ -1,0 +1,12 @@
+# Raw NOAA downloads and the generated database (too big for GitHub;
+# anyone can rebuild them with load_data.py)
+*.csv.gz
+storms.db
+
+# Secrets, just in case
+.env
+
+# Python and virtual environments
+__pycache__/
+venv/
+.venv/
