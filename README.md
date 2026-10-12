@@ -5,7 +5,7 @@ Ask questions about Florida severe weather in plain English and get answers back
 > **"Which 5 counties had the most property damage?"**
 > → Lee ($7.27B), Charlotte ($3.00B), Collier ($2.76B), Taylor ($2.05B), Sarasota ($2.01B), with a chart and the exact SQL that produced it.
 
-![Screenshot of the app](screenshot.png)
+![Screenshot of the app](Screenshot.png)
 
 **Data:** 8,353 NOAA Storm Events records for Florida, 2020 to mid-2026
 **Accuracy:** 20/21 on a hand-built evaluation set, graded automatically (details below)
