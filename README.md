@@ -5,7 +5,7 @@ Ask questions about Florida severe weather in plain English and get answers back
 > **"Which 5 counties had the most property damage?"**
 > → Lee ($7.27B), Charlotte ($3.00B), Collier ($2.76B), Taylor ($2.05B), Sarasota ($2.01B), with a chart and the exact SQL that produced it.
 
-![Screenshot of the app](Screenshot.png)
+![Screenshot of the app](screenshot.png)
 
 **Data:** 8,353 NOAA Storm Events records for Florida, 2020 to mid-2026
 **Accuracy:** 20/21 on a hand-built evaluation set, graded automatically (details below)
@@ -40,7 +40,7 @@ The NOAA data looks clean but has traps that produce answers which look right an
 
 | Problem | Effect | Fix |
 |---|---|---|
-| **Rows ≠ storms.** One hurricane creates a row for every county and zone it hits. | "How many hurricanes in 2024?" returned ~150 instead of a handful. | Loaded `episode_id` and taught the model to count distinct episodes for storm questions. |
+| **Rows ≠ storms.** One hurricane creates a row for every county and zone it hits. | Counting rows gives 40 "hurricanes" in 2024 (284 including tropical storms and surge) when there were really about 3. | Loaded `episode_id` and taught the model to count distinct episodes for storm questions. |
 | **Counties vs. forecast zones.** Hurricanes and coastal floods are often logged under zones like "Coastal Lee," not "Lee." | County rankings silently dropped billions in hurricane damage. | Added a `county` column that maps every zone to its real county. |
 | **Inconsistent zone names.** Slashes ("Monroe/Lower Keys"), a typo in NOAA's own data ("Eastern Putnum"), and zones with no county name ("Trout River," in Duval). | Rows fell out of county totals. | Normalized names, added aliases, and the loader prints any area it can't map. |
 | **Damage stored as text** ("10.00K", "2.5M"). | Can't be summed. | Parsed to dollars on load. |
